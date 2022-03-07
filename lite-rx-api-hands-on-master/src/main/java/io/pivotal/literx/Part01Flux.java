@@ -47,6 +47,10 @@ public class Part01Flux {
     return Flux.range(0, 10)
         .buffer(Duration.ofMillis(100L))
         .flatMap(integers -> Flux.fromStream(integers.stream()))
-        .map(integer -> (long) integer);
+        .map(Long.class::cast);
+  }
+
+  Flux<Long> counter2() {
+    return Flux.interval(Duration.ofMillis(100)).take(10);
   }
 }
